@@ -26,4 +26,5 @@ build:
   
 artifacts:
   - path: ./AppVeyorIntegration/AppVeyorIntegration/bin/$(configuration)/netcoreapp2.1
-    name: Build_$(configuration)_$(version)
+    name: Build_$(configuration)_$(appveyor_build_version)
+    type: zip
