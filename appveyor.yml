@@ -8,25 +8,22 @@ init:
   # Good practise, because Windows line endings are different from Unix/Linux ones
   - cmd: git config --global core.autocrlf true
 
-install:
-  # Install repo specific stuff here
-
-configuration: 
-  - Debug
+# build Configuration, i.e. Debug, Release, etc.
+configuration:
   - Release
 
 before_build:
   # Display .NET Core version
   - cmd: dotnet --version
-  # Display minimal restore text
+
+  # Add private AppVeyor feed source
   - cmd: nuget sources add -Name AppVeyor -Source https://ci.appveyor.com/nuget/babelfornet-rmvl3l0ousvg -UserName info@babelfor.net -Password akira28570
+  # Display minimal restore text
   - cmd: nuget restore ./AppVeyorIntegration/AppVeyorIntegration.sln
 
 build:
   verbosity: minimal
   
 artifacts:
-  - path: ./AppVeyorIntegration/AppVeyorIntegration/bin/Debug/netcoreapp2.1
-    name: Debug Build
-  - path: ./AppVeyorIntegration/AppVeyorIntegration/bin/Release/netcoreapp2.1
-    name: Release Build
+  - path: ./AppVeyorIntegration/AppVeyorIntegration/bin/$(configuration)/netcoreapp2.1
+    name: 'Release{build}'
