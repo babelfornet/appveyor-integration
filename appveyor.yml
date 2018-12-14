@@ -17,7 +17,3 @@ before_build:
   
 build:
 ./AppVeyorIntegration/AppVeyorIntegration.sln
-
-on_finish:
-  # any cleanup in here
-deploy: off
