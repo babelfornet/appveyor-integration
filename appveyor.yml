@@ -20,3 +20,6 @@ before_build:
 
 build:
   verbosity: minimal
+  
+artifacts:
+  - path: AppVeyorIntegration\AppVeyorIntegration\bin\Debug\netcoreapp2.1
