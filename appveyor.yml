@@ -11,14 +11,11 @@ init:
 install:
   # Install repo specific stuff here
 
-nuget:
-  account_feed: true
-  project_feed: true
-
 before_build:
   # Display .NET Core version
   - cmd: dotnet --version
   # Display minimal restore text
+  - cmd: nuget sources add -Name AppVeyor -Source https://ci.appveyor.com/nuget/babelfornet-rmvl3l0ousvg -UserName info@babelfor.net -Password akira28570
   - cmd: nuget restore ./AppVeyorIntegration/AppVeyorIntegration.sln
 
 build:
